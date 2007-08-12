@@ -1,4 +1,6 @@
 Revision history for Perl extension CPAN::Testers.
 
+0.02    Sun Aug 12 16:00:00 EDT 2007
+        - Incorporating documentation changes per Barbie and David Golden
 0.01    Sun Aug 12 06:00:00 EDT 2007
         - Namespace placeholder for the CPAN Testers
