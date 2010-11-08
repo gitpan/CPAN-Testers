@@ -1,5 +1,10 @@
 Revision history for Perl extension CPAN::Testers.
 
+0.03    08/11/2010
+        - Text updated to include the Metabase and various CT2.0 changes. 
+        - Diagram updated to correctly reflect the flow from test to website.
+        - Extended list of websites and mailing lists. 
+        - Fixed website URLs.
 0.02    Sun Aug 12 16:00:00 EDT 2007
         - Incorporating documentation changes per Barbie and David Golden
 0.01    Sun Aug 12 06:00:00 EDT 2007
