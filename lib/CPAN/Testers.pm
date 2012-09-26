@@ -1,9 +1,8 @@
 # CPAN::Testers - QA of CPAN distributions via cross-platform testing
-# Copyright (c) 2007-2010 Adam J. Foxson and the CPAN Testers. All rights 
-# reserved.
+# Copyright (c) 2007-2012 CPAN Testers. All rights reserved.
 
-# This program is free software; you can redistribute it and/or modify
-# it under the same terms as Perl itself.
+# This module is free software; you can redistribute it and/or
+# modify it under the Artistic License v2.
 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -11,12 +10,15 @@
 
 package CPAN::Testers;
 
+use warnings;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
-local $^W = 1;
+1;
+
+__END__
 
 =head1 NAME
 
@@ -177,6 +179,9 @@ The MySQL 'cpanstats' database now provides the following SQLite databases:
 
 =back
 
+Note that cpanstats.db will be retired in the future, due to errors creating
+the data with SQLite.
+
 =head2 The Websites
 
 Prior to 2002 the CPAN Testers reports were available in their raw form via the
@@ -259,14 +264,48 @@ The cpan-uploads mailing list (read only).
 
 =back
 
-=head2 Articles & Presentations
+=head2 Presentations
 
 =over 4
 
-=item * L<http://wiki.cpantesters.org/cpantester/>
+=item * L<http://birmingham.pm.org/talks/barbie/ct-eco/index.html>
+
+The Eco-System of CPAN Testers by Barbie. An explanation of the software 
+components, databases and process that keep CPAN Testers working. 
+Presented at YAPC::Europe 2012
+
+=item * L<http://birmingham.pm.org/talks/barbie/ct-tales/index.html>
+
+Smoking The Onion - Tales of CPAN Testers by Barbie. Hints and tips for 
+CPAN authors and users alike. Presented at YAPC::Europe 2011.
+
+=item * L<http://birmingham.pm.org/talks/barbie/ct20/>
+
+An introduction to CPAN Testers 2.0 & The Metabase by Barbie. Presented at
+YAPC::Europe 2010.
+
+=item * L<http://birmingham.pm.org/talks/barbie/stats-of-cpan/>
+=item * L<http://birmingham.pm.org/talks/barbie/stats-of-cpan-lt/>
+
+Full & Lightning Talk for the Statistics of CPAN talks by Barbie. Presented
+at technical events throughout 2009, including YAPC::NA 2009 and YAPC::Europe
+2009.
+
+=item * L<http://birmingham.pm.org/talks/barbie/cpantester2/slides.html>
+
+A presentation entitled "How to be a CPAN Tester" by Barbie. An update on the
+talk by Barbie and David Golden in 2008. Presented at YAPC::NA 2008
+
+=item * L<http://birmingham.pm.org/talks/barbie/cpantester/slides.html>
 
 A presentation entitled "How to be a CPAN Tester" created by Barbie and David
-Golden
+Golden. Presented at YAPC::NA 2007
+
+=back
+
+=head2 Articles
+
+=over 4
 
 =item * L<http://use.perl.org/articles/06/11/08/1256207.shtml>
 
@@ -279,21 +318,6 @@ An article entitled "Becoming a CPAN Tester with CPANPLUS" created by Audrey
 Tang
 
 =back
-
-=head1 CAVEATS
-
-This is the third draft of this document. Undoubtedly, there may be various
-bits that need some adjustments. Feedback is most welcome.
-
-=head1 COPYRIGHT
-
-Copyright (c) 2007-2010 Adam J. Foxson and the CPAN Testers. All rights 
-reserved.
-
-=head1 LICENSE
-
-This program is free software; you may redistribute it and/or modify it under
-the same terms as Perl itself.
 
 =head1 SEE ALSO
 
@@ -320,6 +344,10 @@ valuable insights and suggestions over the years
 
 =item * L<http://search.cpan.org/dist/CPAN-Testers-WWW-Statistics/>
 
+=item * L<http://search.cpan.org/dist/CPAN-Testers-WWW-Wiki/>
+
+=item * L<http://search.cpan.org/dist/CPAN-Testers-WWW-Blog/>
+
 =item * L<http://search.cpan.org/dist/CPANPLUS-YACSmoke/>
 
 =item * L<http://search.cpan.org/dist/Metabase/>
@@ -328,18 +356,29 @@ valuable insights and suggestions over the years
 
 =item * L<http://search.cpan.org/dist/Test-Reporter/>
 
-=item * L<http://devel.cpantesters.org/cpanstats-latest.tar.gz>
-
 =back
+
+=head1 CAVEATS
+
+This is the fourth draft of this document. Undoubtedly, there may be various
+bits that need some adjustments. Feedback is most welcome.
 
 =head1 AUTHORS
 
 Adam J. Foxson E<lt>F<afoxson@pobox.com>E<gt>, having been involved with the
 CPAN Testers for over half a decade, is the principal author of Test::Reporter.
 
-Thank you to David Golden and Barbie for their advice and suggestions on
-improving this documentation.
+Barbie, E<lt>F<barbie@cpan.org>E<gt>
+for Miss Barbell Productions E<lt>http://www.missbarbell.co.ukE<gt>.
+
+David Golden
+
+=head1 COPYRIGHT AND LICENSE
+
+  Copyright (C) 2007-2010 Adam J. Foxson and the CPAN Testers
+  Copyright (C) 2010-2012 CPAN Testers
+
+This module is free software; you can redistribute it and/or
+modify it under the Artistic License v2.
 
 =cut
-
-1;
