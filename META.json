@@ -1,6 +1,6 @@
 {
     "name" : "CPAN-Testers",
-    "version" : "0.04",
+    "version" : "0.05",
     "abstract" : "QA of CPAN distributions via cross-platform testing",
     "author" : [
         "Adam J. Foxson <afoxson@pobox.com>",
@@ -41,17 +41,29 @@
                 "Test::Pod": "1.00",
                 "Test::Pod::Coverage": "0.08"
             }
+        },
+        "runtime" : {
+            "requires" : {
+                "perl": "5.006"
+            }
         }
     },
 
     "provides" : {
         "CPAN::Testers" : {
             "file" : "lib/CPAN/Testers.pm",
-            "version" : "0.04"
+            "version" : "0.05"
         }
     },
 
     "resources": {
-        "bugtracker": { "web": "http://rt.cpan.org/Public/Dist/Display.html?Name=CPAN-Testers" }
+        "license": "http://www.perlfoundation.org/artistic_license_2_0",
+        "bugtracker": { "web": "http://rt.cpan.org/Public/Dist/Display.html?Name=CPAN-Testers" },
+        "homepage": "http://www.cpantesters.org",
+        "repository": {
+            "url": "git://github.com/barbie/cpan-testers.git",
+            "web": "http://github.com/barbie/cpan-testers",
+            "type": "git"
+        }
     }
 }

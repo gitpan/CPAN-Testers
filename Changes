@@ -1,13 +1,18 @@
 Revision history for Perl extension CPAN::Testers.
 
-0.04	2012-09-26
-	- change file dates changed to meet W3CDTF standards.
+0.05    2014-04-11
+        - documenttion updates.
+        - added LICENSE file.
+        - added git repo links.
+
+0.04    2012-09-26
+        - change file dates changed to meet W3CDTF standards.
         - reworked Makefile.PL for clarity.
-	- reworked META.yml
-	- added META.json
-	- reworked and added to the test suite
-	- more presentations
-	- added CPAN-Testers-Eco-System.jpg example image.
+        - reworked META.yml
+        - added META.json
+        - reworked and added to the test suite
+        - more presentations
+        - added CPAN-Testers-Eco-System.jpg example image.
 
 0.03    2010-11-08
         - Text updated to include the Metabase and various CT2.0 changes. 

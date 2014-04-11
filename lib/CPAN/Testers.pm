@@ -1,7 +1,7 @@
 # CPAN::Testers - QA of CPAN distributions via cross-platform testing
-# Copyright (c) 2007-2012 CPAN Testers. All rights reserved.
+# Copyright (c) 2007-2014 CPAN Testers. All rights reserved.
 
-# This module is free software; you can redistribute it and/or
+# This distribution is free software; you can redistribute it and/or
 # modify it under the Artistic License v2.
 
 # This program is distributed in the hope that it will be useful,
@@ -14,7 +14,7 @@ use warnings;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.04';
+$VERSION = '0.05';
 
 1;
 
@@ -27,7 +27,7 @@ CPAN::Testers - QA of CPAN distributions via cross-platform testing
 =head1 SYNOPSIS
 
 With the explosive growth and increased interest in the CPAN Testers over the 
-last 5 years, it was felt useful to create this namespace placeholder to house
+first 5 years, it was felt useful to create this namespace placeholder to house
 the re-architected next-generation CPAN Testers stack.
 
 This namespace also provides for the consolidation of related work under one
@@ -50,14 +50,14 @@ There are many distributions that comprise the CPAN Testers stack (please
 forgive my poor artwork). The current architecture is as follows:
 
 
-                                  [POE-Component-CPANPLUS-YACSmoke]
-                                                  |
-                [CPAN-Reporter]         [CPANPLUS-YACSmoke]
-                   (CPAN)                   (CPANPLUS)
-                       \                    /
-                        \                  /
-                         \                /
-                          \              /
+                  [POE-Component-CPANPLUS-YACSmoke]
+                                  |
+   [CPAN-Reporter]      [CPANPLUS-YACSmoke]        [cpanm-reporter]
+       (CPAN)                (CPANPLUS)               (cpanminus)
+          |                       |                        |
+          |                       |                        |
+          .------------------------------------------------.
+                                  |        
                            [Test-Reporter]
                                   |        
                                   |   CT2.0
@@ -73,13 +73,13 @@ forgive my poor artwork). The current architecture is as follows:
                                   |       
                              [cpanstats] 
                             (Data Store)
-                            /          \
-                           /            \
-                          /              \
-                         /                \
-     [CPAN-Testers-WWW-Reports]    [CPAN-Testers-WWW-Statistics]    
-               |                              |
- [http://wwww.cpantesters.org/]    [http://stats.cpantesters.org/]
+                                  |        
+          .------------------------------------------------.
+          |                       |                        |
+          |                       |                        |
+ [CPAN-Testers-WWW-Reports]     (APIs)        [CPAN-Testers-WWW-Statistics]    
+          |                                                |
+ [http://wwww.cpantesters.org/]              [http://stats.cpantesters.org/]
 
 
 This a rather simplistic view, but covers the basic flow of test reports into
@@ -87,9 +87,10 @@ the system, and how the 'cpanstats' database and the core websites are derived.
 
 =head2 Smoke Clients
 
-There are additional smokebot applications that sit beyond CPAN-Reporter and
-CPANPLUS-YACSmoke, though all use the APIs provided by these hooks into the two
-primary distribution installers, CPAN and CPANPLUS.
+There are additional smokebot applications that sit beyond the CPAN-Reporter,
+CPANPLUS-YACSmoke and cpanm-report smoker clients, though all use the APIs 
+provided by these hooks into the three primary distribution installers, CPAN,
+CPANPLUS and cpanminus.
 
 Previously there were standalone scripts, such as 'cpantest' included with 
 CPANPLUS prior to v0.50, which used dedicated test capture code, specifically
@@ -101,11 +102,16 @@ In 2006 CPAN::Reporter was released, providing smoke testing support for
 CPAN.pm.
 
 In 2008, with little work being done to bring CPAN-YACSmoke up to date with
-the current CPANPLUS API, CPANPLUS-YACSmoke was release, building on the work
+the current CPANPLUS API, CPANPLUS-YACSmoke was released, building on the work
 of CPAN-YACSmoke.
 
-The current standard client interfaces for CPAN Testers smoke testing are now
-CPAN-Reporter and CPANPLUS-YACSmoke.
+In 2010 a new minmal installer was released. In 2013 a parser, cpanm-reporter,
+was released that took the output logs from cpanminus and adapted them into 
+test reports that could be submitted to the Metabase. All three installers had
+their own dedicated smoker clients.
+
+The primary client interfaces for CPAN Testers smoke testing are CPAN-Reporter
+and CPANPLUS-YACSmoke, though cpanminus-reporter is still young.
 
 In order to submit reports, the clients need to supply test results in a 
 consistent form, so that the data store can parse them and store the relevant 
@@ -149,7 +155,7 @@ currently sits on an Amazon S3 server, and can cope with many more times the
 level of throughput than was previously seen with the SMTP delivery mechanism.
 
 As over 1st September 2010, the old SMTP gateway to the old cpan-testers 
-mailing list is now closed. 
+mailing list was closed. 
 
 =head2 The 'cpanstats' Database
 
@@ -171,16 +177,14 @@ The MySQL 'cpanstats' database now provides the following SQLite databases:
 
 =over 4
 
-=item * cpanstats.db
-
 =item * uploads.db
 
 =item * release.db
 
 =back
 
-Note that cpanstats.db will be retired in the future, due to errors creating
-the data with SQLite.
+The old cpanstats.db SQLite database has now been retired, due to errors 
+creating the data with SQLite.
 
 =head2 The Websites
 
@@ -198,9 +202,18 @@ Development, Metabase, Dependencies, Matrix and Analysis websites, with the
 'cpanstats' database being used by many other sites for their own data 
 analysis.
 
-In 2010 with the launch of CT2.0 the NNTP feed is now depreciated. All reports
+In 2010 with the launch of CT2.0 the NNTP feed was deprecated. All reports
 are now held on the cpantesters server, and can be viewed using their id or
 guid in styled or raw formats.
+
+Since 2010, various APIs have been released to enable anyone to get at the
+underlying data and reports to present, analyse and store reports as they
+wish.
+
+In 2014 the CPAN Testers Admin site was released, to provide authors and 
+testers with a means to 'cancel' reports, where the smoker was submitting 
+incorrect reports, and also for testers to claim the email addresses they
+have and are using. The latter then feeds into the Leaderboard.
 
 Improvements to the CPAN Testers architecture are always in progress.
 
@@ -248,6 +261,10 @@ The CPAN Testers Development Site
 
 The CPAN Testers Metabase Site
 
+=item * L<http://admin.cpantesters.org/>
+
+The CPAN Testers Admin Site
+
 =back
 
 =head2 Mailing Lists
@@ -268,11 +285,16 @@ The cpan-uploads mailing list (read only).
 
 =over 4
 
+=item * L<http://birmingham.pm.org/talks/barbie/ct-future/index.html>
+
+The Future of CPAN Testers. A short talk about some of planned projects for 
+CPAN Testers. Presented at LPW 2013.
+
 =item * L<http://birmingham.pm.org/talks/barbie/ct-eco/index.html>
 
 The Eco-System of CPAN Testers by Barbie. An explanation of the software 
 components, databases and process that keep CPAN Testers working. 
-Presented at YAPC::Europe 2012
+Presented at YAPC::Europe 2012.
 
 =item * L<http://birmingham.pm.org/talks/barbie/ct-tales/index.html>
 
@@ -360,7 +382,7 @@ valuable insights and suggestions over the years
 
 =head1 CAVEATS
 
-This is the fourth draft of this document. Undoubtedly, there may be various
+This is the fifth draft of this document. Undoubtedly, there may be various
 bits that need some adjustments. Feedback is most welcome.
 
 =head1 AUTHORS
@@ -376,9 +398,9 @@ David Golden
 =head1 COPYRIGHT AND LICENSE
 
   Copyright (C) 2007-2010 Adam J. Foxson and the CPAN Testers
-  Copyright (C) 2010-2012 CPAN Testers
+  Copyright (C) 2010-2014 CPAN Testers
 
-This module is free software; you can redistribute it and/or
+This distribution is free software; you can redistribute it and/or
 modify it under the Artistic License v2.
 
 =cut

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                   CPAN-Testers
-version:                0.04
+version:                0.05
 abstract:               QA of CPAN distributions via cross-platform testing
 author:
     - Adam J. Foxson <afoxson@pobox.com>
@@ -18,6 +18,8 @@ build_requires:
 build_requires:
   IO::File:               0
   Test::More:             0.70
+requires:
+  perl:                   5.006
 recommends:
   Test::CPAN::Meta:       0
   Test::CPAN::Meta::JSON: 0
@@ -27,15 +29,17 @@ recommends:
 provides:
   CPAN::Testers:
     file:     lib/CPAN/Testers.pm
-    version:  0.04
+    version:  0.05
 no_index:
   directory:
     - t
     - examples
 
 resources:
-  license:    http://dev.perl.org/licenses/
+  license:    http://www.perlfoundation.org/artistic_license_2_0
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=CPAN-Testers
+  homepage:   http://www.cpantesters.org
+  repository: http://github.com/barbie/cpan-testers
 
 meta-spec:
    version:   1.4
