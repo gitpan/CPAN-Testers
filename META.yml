@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                   CPAN-Testers
-version:                0.05
+version:                0.06
 abstract:               QA of CPAN distributions via cross-platform testing
 author:
     - Adam J. Foxson <afoxson@pobox.com>
@@ -29,7 +29,7 @@ recommends:
 provides:
   CPAN::Testers:
     file:     lib/CPAN/Testers.pm
-    version:  0.05
+    version:  0.06
 no_index:
   directory:
     - t
@@ -44,4 +44,4 @@ resources:
 meta-spec:
    version:   1.4
    url:       http://module-build.sourceforge.net/META-spec-v1.4.html
-generated_by: Hand 1.0
+generated_by: The Hand of Barbie 1.0

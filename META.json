@@ -1,6 +1,6 @@
 {
     "name" : "CPAN-Testers",
-    "version" : "0.05",
+    "version" : "0.06",
     "abstract" : "QA of CPAN distributions via cross-platform testing",
     "author" : [
         "Adam J. Foxson <afoxson@pobox.com>",
@@ -9,7 +9,7 @@
     ],
     "release_status" : "stable",
     "dynamic_config" : 0,
-    "generated_by" : "Hand 1.0",
+    "generated_by": "The Hand of Barbie 1.0",
     "license" : [
         "artistic_2"
     ],
@@ -52,12 +52,12 @@
     "provides" : {
         "CPAN::Testers" : {
             "file" : "lib/CPAN/Testers.pm",
-            "version" : "0.05"
+            "version" : "0.06"
         }
     },
 
     "resources": {
-        "license": "http://www.perlfoundation.org/artistic_license_2_0",
+        "license": [ "http://www.perlfoundation.org/artistic_license_2_0" ],
         "bugtracker": { "web": "http://rt.cpan.org/Public/Dist/Display.html?Name=CPAN-Testers" },
         "homepage": "http://www.cpantesters.org",
         "repository": {

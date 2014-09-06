@@ -1,4 +1,9 @@
-Revision history for Perl extension CPAN::Testers.
+Revision history for CPAN-Testers
+=================================
+
+0.06    2014-09-06
+        - fixed license fields in META.json to be lists.
+        - extended test suite.
 
 0.05    2014-04-11
         - documenttion updates.
